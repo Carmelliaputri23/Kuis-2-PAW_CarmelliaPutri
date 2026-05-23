@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="container mt-5">
+    <div class="container mt-4">
 
         <div class="card shadow-sm text-center">
             <div class="card-body py-5">

@@ -1,66 +1,116 @@
-<<x-layout>
+<x-layout>
 
-    <div class="container py-5">
+    <div class="container mt-4">
 
         <div class="row justify-content-center">
 
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-8">
 
-                {{-- Card Form --}}
-                <div class="card shadow-sm border-0">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
 
-                    <div class="card-header bg-warning">
-                        <h4 class="mb-0 text-dark">Edit Fakultas</h4>
+                    {{-- HEADER --}}
+                    <div class="p-5 border-bottom bg-white">
+
+                        <h2 class="fw-bold text-dark mb-2">
+                            🎓 Form Data Fakultas
+                        </h2>
+
+                        <p class="text-muted mb-0">
+                            Silakan isi data fakultas dengan lengkap
+                        </p>
+
                     </div>
 
-                    <div class="card-body">
+
+                    {{-- BODY --}}
+                    <div class="card-body p-5 bg-white">
+
+                        {{-- ERROR --}}
                         @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $item)
-                                        <li>{{ $item }}</li>
+
+                            <div class="alert alert-danger border-0 rounded-4">
+
+                                <ul class="mb-0 ps-3">
+
+                                    @foreach ($errors->all() as $error)
+
+                                        <li>{{ $error }}</li>
+
                                     @endforeach
+
                                 </ul>
+
                             </div>
 
                         @endif
-                        <form action="{{ route('fakultas.store') }}" method="POST">
+
+
+                        {{-- FORM --}}
+                        <form action="/fakultas" method="POST">
+
                             @csrf
 
-                            {{-- Nama Fakultas --}}
-                            <div class="mb-3">
-                                <label for="nama_fakultas" class="form-label">
-                                    Nama Fakultas
-                                </label>
 
-                                <input type="text" name="nama_fakultas" id="nama_fakultas" class="form-control"
-                                    placeholder="Masukkan nama fakultas" value="" required>
-                            </div>
-
-                            {{-- Nama Dekan --}}
+                            {{-- NAMA FAKULTAS --}}
                             <div class="mb-4">
-                                <label for="nama_dekan" class="form-label">
-                                    Nama Dekan
+
+                                <label class="form-label fw-semibold text-dark">
+
+                                    Nama Fakultas
+
                                 </label>
 
-                                <input type="text" name="nama_dekan" id="nama_dekan" class="form-control"
-                                    placeholder="Masukkan nama dekan" value="" required>
+                                <input
+                                    type="text"
+                                    name="nama_fakultas"
+                                    class="form-control custom-input"
+                                    placeholder="Contoh: Fakultas Teknik">
+
                             </div>
 
-                            {{-- Button --}}
-                            <div class="d-flex justify-content-between">
 
-                                <a href="/fakultas" class="btn btn-secondary">
-                                    Kembali
-                                </a>
+                            {{-- NAMA DEKAN --}}
+                            <div class="mb-5">
 
-                                <button type="submit" class="btn btn-warning text-dark">
-                                    submit
+                                <label class="form-label fw-semibold text-dark">
+
+                                    Nama Dekan
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="nama_dekan"
+                                    class="form-control custom-input"
+                                    placeholder="Contoh: Dr. Budi Santoso">
+
+                            </div>
+
+
+                            {{-- BUTTON --}}
+                            <div class="d-grid">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-dark rounded-4 py-3 fw-semibold">
+
+                                    💾 Simpan Data
+
                                 </button>
 
                             </div>
 
                         </form>
+
+                    </div>
+
+
+                    {{-- FOOTER --}}
+                    <div class="card-footer bg-white border-top text-center py-4">
+
+                        <small class="text-muted">
+                            Sistem Informasi Fakultas
+                        </small>
 
                     </div>
 
@@ -72,4 +122,39 @@
 
     </div>
 
-    </x-layout>
+
+    {{-- STYLE --}}
+    <style>
+
+        .custom-input{
+            border-radius:16px;
+            border:1px solid #e5e7eb;
+            padding:14px 18px;
+            font-size:15px;
+            transition:.3s;
+            box-shadow:none!important;
+        }
+
+        .custom-input:focus{
+            border-color:#111827;
+            box-shadow:0 0 0 4px rgba(17,24,39,0.08)!important;
+        }
+
+        .btn-dark{
+            background:#111827;
+            border:none;
+            transition:.3s;
+        }
+
+        .btn-dark:hover{
+            background:#000;
+            transform:translateY(-2px);
+        }
+
+        .card{
+            background:#fff;
+        }
+
+    </style>
+
+</x-layout>

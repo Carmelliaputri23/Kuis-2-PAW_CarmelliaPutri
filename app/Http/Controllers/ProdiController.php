@@ -24,7 +24,9 @@ class ProdiController extends Controller
      */
     public function create()
     {
-        return view("prodi.add-prodi");
+        $listFakultas = Fakultas::all();
+
+        return view('prodi.create-prodi', compact('listFakultas'));
     }
 
     /**
