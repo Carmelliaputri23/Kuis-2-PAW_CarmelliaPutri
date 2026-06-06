@@ -1,89 +1,51 @@
 <x-layout>
+    <div class="container py-5">
 
-    <div class="container mt-4">
-
-        {{-- ALERT --}}
+        {{-- Alert Notifikasi Sukses --}}
         @if (session('success'))
-
-            <div class="alert alert-success border-0 rounded-4 shadow-sm d-flex align-items-center justify-content-between mb-4">
-
-                <div>
-                    ✨ {{ session('success') }}
-                </div>
-
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="alert">
-                </button>
-
+            <div class="alert alert-success alert-dismissible fade show rounded-3 shadow-sm mb-4" role="alert">
+                ✨ {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-
         @endif
 
-
-        {{-- HEADER --}}
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        {{-- Header --}}
+        <div class="d-flex justify-content-between align-items-center mb-4">
 
             <div>
-
-                <h2 class="fw-bold text-dark mb-1">
+                <h2 class="fw-bold text-primary mb-1">
                     📚 List Program Studi
                 </h2>
 
                 <p class="text-muted mb-0">
                     Data seluruh program studi universitas
                 </p>
-
             </div>
 
-
-            <a href="{{ route('prodi.create') }}"
-               class="btn btn-dark rounded-4 px-4 py-3 fw-semibold shadow-sm">
-
+            <a href="{{ route('prodi.create') }}" class="btn btn-primary rounded-3 shadow-sm">
                 + Tambah Prodi
-
             </a>
 
         </div>
 
+        {{-- Card --}}
+        <div class="card border-0 shadow-lg rounded-4">
 
-        {{-- CARD --}}
-        <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-
-            <div class="card-body p-0">
+            <div class="card-body p-4">
 
                 <div class="table-responsive">
 
-                    <table class="table align-middle mb-0 custom-table">
+                    <table class="table table-hover align-middle">
 
-                        <thead>
-
+                        <thead class="table-primary">
                             <tr>
-
-                                <th width="5%">
-                                    No
-                                </th>
-
-                                <th>
-                                    Nama Prodi
-                                </th>
-
-                                <th>
-                                    Nama Kaprodi
-                                </th>
-
-                                <th>
-                                    Alias
-                                </th>
-
-                                <th class="text-center" width="30%">
-                                    Aksi
-                                </th>
-
+                                <th width="5%">No</th>
+                                <th>Nama Prodi</th>
+                                <th>Nama Kaprodi</th>
+                                <th>Alias / Kode</th>
+                                <th width="30%" class="text-center">Aksi</th>
                             </tr>
-
                         </thead>
-
 
                         <tbody>
 
@@ -91,67 +53,53 @@
 
                                 <tr>
 
-                                    <td class="fw-semibold text-muted">
+                                    <td class="fw-semibold">
                                         {{ $loop->iteration }}
                                     </td>
 
                                     <td>
-
-                                        <div class="fw-bold text-dark">
+                                        <span class="fw-bold text-dark">
                                             {{ $item->nama_prodi }}
-                                        </div>
-
+                                        </span>
                                     </td>
 
-                                    <td class="text-muted">
+                                    <td>
                                         {{ $item->nama_kaprodi }}
                                     </td>
 
                                     <td>
-
-                                        <span class="badge custom-badge">
-
+                                        <span class="badge bg-secondary px-2 py-2 rounded-2">
                                             {{ $item->alias_prodi }}
-
                                         </span>
-
                                     </td>
 
-                                    <td>
+                                    <td class="text-center">
 
-                                        <div class="d-flex justify-content-center flex-wrap gap-2">
+                                        <div class="d-flex justify-content-center gap-2">
 
-                                            {{-- DETAIL --}}
+                                            {{-- Detail --}}
                                             <a href="{{ route('prodi.show', $item->id) }}"
-                                               class="btn btn-light border rounded-3 px-3">
-
+                                               class="btn btn-info btn-sm rounded-3 text-white">
                                                 👁 Detail
-
                                             </a>
 
-
-                                            {{-- EDIT --}}
+                                            {{-- Edit --}}
                                             <a href="{{ route('prodi.edit', $item->id) }}"
-                                               class="btn btn-dark rounded-3 px-3">
-
+                                               class="btn btn-warning btn-sm rounded-3 text-white">
                                                 ✏ Edit
-
                                             </a>
 
-
-                                            {{-- DELETE --}}
-                                            <form action="{{ route('prodi.destroy', $item->id) }}"
+                                            {{-- Hapus --}}
+                                            <form action="{{ route('prodi.destroy', $item->id) }}" 
                                                   method="POST"
-                                                  onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                                  onsubmit="return confirm('Yakin ingin menghapus data prodi ini?')">
 
                                                 @csrf
-                                                @method('DELETE')
+                                                @method("DELETE")
 
                                                 <button type="submit"
-                                                        class="btn btn-outline-danger rounded-3 px-3">
-
+                                                        class="btn btn-danger btn-sm rounded-3">
                                                     🗑 Hapus
-
                                                 </button>
 
                                             </form>
@@ -165,14 +113,9 @@
                             @empty
 
                                 <tr>
-
-                                    <td colspan="5"
-                                        class="text-center py-5 text-muted">
-
+                                    <td colspan="5" class="text-center py-4 text-muted">
                                         Data program studi belum tersedia
-
                                     </td>
-
                                 </tr>
 
                             @endforelse
@@ -185,72 +128,14 @@
 
             </div>
 
-
-            {{-- FOOTER --}}
-            <div class="card-footer bg-white border-top text-center py-4">
-
+            {{-- Footer --}}
+            <div class="card-footer bg-light text-center rounded-bottom-4">
                 <small class="text-muted">
                     Sistem Informasi Program Studi
                 </small>
-
             </div>
 
         </div>
 
     </div>
-
-
-    {{-- STYLE --}}
-    <style>
-
-        .custom-table thead{
-            background:#f9fafb;
-        }
-
-        .custom-table thead th{
-            padding:20px;
-            border:none;
-            font-size:14px;
-            color:#6b7280;
-            font-weight:600;
-        }
-
-        .custom-table tbody td{
-            padding:20px;
-            border-top:1px solid #f1f5f9;
-            vertical-align:middle;
-        }
-
-        .custom-table tbody tr{
-            transition:.2s;
-        }
-
-        .custom-table tbody tr:hover{
-            background:#fafafa;
-        }
-
-        .custom-badge{
-            background:#f3f4f6;
-            color:#111827;
-            padding:10px 14px;
-            border-radius:12px;
-            font-size:13px;
-            font-weight:600;
-        }
-
-        .btn-dark{
-            background:#111827;
-            border:none;
-        }
-
-        .btn-dark:hover{
-            background:#000;
-        }
-
-        .card{
-            background:#fff;
-        }
-
-    </style>
-
 </x-layout>

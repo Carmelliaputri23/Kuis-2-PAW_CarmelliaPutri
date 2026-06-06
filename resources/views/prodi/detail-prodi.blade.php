@@ -1,196 +1,96 @@
 <x-layout>
-
-    <div class="container mt-4">
-
+    <div class="container py-5">
+        
         <div class="row justify-content-center">
+            <div class="col-md-7">
 
-            <div class="col-lg-7">
+                <div class="card border-0 shadow-lg rounded-4">
 
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-
-                    {{-- HEADER --}}
-                    <div class="bg-white border-bottom p-5 text-center">
-
-                        <div class="mb-3">
-
-                            <div class="detail-icon mx-auto">
-
-                                📘
-
-                            </div>
-
-                        </div>
-
-                        <h2 class="fw-bold text-dark mb-2">
-                            Detail Program Studi
+                    {{-- Header --}}
+                    <div class="card-header bg-primary text-white text-center py-4 rounded-top-4">
+                        <h2 class="fw-bold mb-1">
+                            📘 Detail Prodi
                         </h2>
-
-                        <p class="text-muted mb-0">
-                            Informasi lengkap data program studi
+                        <p class="mb-0 small">
+                            Informasi lengkap data Prodi
                         </p>
-
                     </div>
 
+                    {{-- Body --}}
+                    <div class="card-body p-4">
 
-                    {{-- BODY --}}
-                    <div class="card-body p-5 bg-white">
+                        <table class="table table-borderless align-middle">
+                            <tbody>
 
-                        {{-- ITEM --}}
-                        <div class="detail-item">
+                                <tr class="border-bottom">
+                                    <th width="35%" class="text-secondary fs-5">
+                                        Nama Prodi
+                                    </th>
+                                    <td width="5%" class="fw-bold">
+                                        :
+                                    </td>
+                                    <td class="fs-5 fw-semibold text-dark">
+                                        {{ $prodi->nama_prodi }}
+                                    </td>
+                                </tr>
 
-                            <div class="detail-label">
-                                Nama Prodi
-                            </div>
+                                <tr class="border-bottom">
+                                    <th class="text-secondary fs-5">
+                                        Nama Kaprodi
+                                    </th>
+                                    <td class="fw-bold">
+                                        :
+                                    </td>
+                                    <td class="fs-5 fw-semibold text-dark">
+                                        {{ $prodi->nama_kaprodi }}
+                                    </td>
+                                </tr>
 
-                            <div class="detail-value">
-                                {{ $prodi->nama_prodi }}
-                            </div>
+                                <tr>
+                                    <th class="text-secondary fs-5">
+                                        Alias / Kode
+                                    </th>
+                                    <td class="fw-bold">
+                                        :
+                                    </td>
+                                    <td class="fs-5 fw-semibold text-dark">
+                                        <span class="badge bg-secondary px-3 py-2 fs-6 rounded-3">
+                                            {{ $prodi->alias_prodi }}
+                                        </span>
+                                    </td>
+                                </tr>
 
-                        </div>
+                            </tbody>
+                        </table>
 
+                        {{-- Tombol Navigasi --}}
+                        <div class="mt-4 d-flex gap-2">
 
-                        {{-- ITEM --}}
-                        <div class="detail-item">
-
-                            <div class="detail-label">
-                                Nama Kaprodi
-                            </div>
-
-                            <div class="detail-value">
-                                {{ $prodi->nama_kaprodi }}
-                            </div>
-
-                        </div>
-
-
-                        {{-- ITEM --}}
-                        <div class="detail-item border-0 pb-0">
-
-                            <div class="detail-label">
-                                Alias Prodi
-                            </div>
-
-                            <div class="detail-value">
-
-                                <span class="custom-badge">
-
-                                    {{ $prodi->alias_prodi }}
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        {{-- BUTTON --}}
-                        <div class="d-flex flex-wrap gap-3 mt-5">
-
-                            <a href="{{ route('prodi.index') }}"
-                               class="btn btn-light border rounded-4 px-4 py-3 fw-semibold flex-fill">
-
+                            <a href="{{ route('prodi.index') }}" 
+                               class="btn btn-secondary rounded-3 px-4">
                                 ← Kembali
-
                             </a>
 
-
-                            <a href="{{ route('prodi.edit', $prodi->id) }}"
-                               class="btn btn-dark rounded-4 px-4 py-3 fw-semibold flex-fill">
-
-                                ✏ Edit Data
-
+                            <a href="{{ route('prodi.edit', $prodi->id) }}" 
+                               class="btn btn-warning rounded-3 px-4 text-white">
+                                ✏ Edit
                             </a>
 
                         </div>
 
                     </div>
 
-
-                    {{-- FOOTER --}}
-                    <div class="card-footer bg-white border-top text-center py-4">
-
+                    {{-- Footer --}}
+                    <div class="card-footer bg-light text-center rounded-bottom-4">
                         <small class="text-muted">
                             Sistem Informasi Program Studi
                         </small>
-
                     </div>
 
                 </div>
 
             </div>
-
         </div>
 
     </div>
-
-
-    {{-- STYLE --}}
-    <style>
-
-        .detail-icon{
-            width:80px;
-            height:80px;
-            border-radius:24px;
-            background:#f3f4f6;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:35px;
-        }
-
-        .detail-item{
-            padding:24px 0;
-            border-bottom:1px solid #f1f5f9;
-        }
-
-        .detail-label{
-            font-size:14px;
-            color:#6b7280;
-            margin-bottom:8px;
-            font-weight:600;
-        }
-
-        .detail-value{
-            font-size:20px;
-            font-weight:700;
-            color:#111827;
-        }
-
-        .custom-badge{
-            background:#f3f4f6;
-            color:#111827;
-            padding:12px 18px;
-            border-radius:14px;
-            font-size:14px;
-            font-weight:700;
-            display:inline-block;
-        }
-
-        .btn-dark{
-            background:#111827;
-            border:none;
-            transition:.3s;
-        }
-
-        .btn-dark:hover{
-            background:#000;
-            transform:translateY(-2px);
-        }
-
-        .btn-light{
-            background:#f9fafb;
-            transition:.3s;
-        }
-
-        .btn-light:hover{
-            background:#f3f4f6;
-            transform:translateY(-2px);
-        }
-
-        .card{
-            background:#fff;
-        }
-
-    </style>
-
 </x-layout>

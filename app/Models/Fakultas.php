@@ -8,6 +8,6 @@ class Fakultas extends Model
 {
     protected $fillable = [
         'nama_fakultas',
-        'nama_dekan',
+        'nama_dekan'
     ];
 }

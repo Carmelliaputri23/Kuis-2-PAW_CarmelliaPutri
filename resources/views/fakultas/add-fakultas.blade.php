@@ -1,160 +1,202 @@
 <x-layout>
 
-    <div class="container mt-4">
+    <style>
+        body{
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            min-height: 100vh;
+        }
 
-        <div class="row justify-content-center">
+        .form-wrapper{
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-            <div class="col-lg-6 col-md-8">
+        .form-card{
+            width: 100%;
+            max-width: 650px;
+            border: none;
+            border-radius: 30px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(14px);
+            box-shadow:
+                0 15px 50px rgba(0,0,0,0.08),
+                0 4px 20px rgba(0,0,0,0.04);
+        }
 
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        .form-header{
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            padding: 35px;
+            color: white;
+            text-align: center;
+        }
 
-                    {{-- HEADER --}}
-                    <div class="p-5 border-bottom bg-white">
+        .form-header h2{
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
 
-                        <h2 class="fw-bold text-dark mb-2">
-                            🎓 Form Data Fakultas
-                        </h2>
+        .form-header p{
+            opacity: 0.85;
+            margin: 0;
+        }
 
-                        <p class="text-muted mb-0">
-                            Silakan isi data fakultas dengan lengkap
-                        </p>
+        .form-body{
+            padding: 40px;
+        }
 
+        .form-label{
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 10px;
+        }
+
+        .form-control{
+            height: 58px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            padding: 0 18px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .form-control:focus{
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
+            background: white;
+        }
+
+        .input-group-text{
+            border-radius: 16px 0 0 16px;
+            border: 1px solid #e2e8f0;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 18px;
+        }
+
+        .btn-save{
+            height: 58px;
+            border: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 16px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(99,102,241,0.25);
+        }
+
+        .btn-save:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(99,102,241,0.35);
+        }
+
+        .form-icon{
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            margin-bottom: 20px;
+            font-size: 40px;
+        }
+    </style>
+
+    <div class="container">
+
+        <div class="form-wrapper">
+
+            <div class="card form-card">
+
+                <!-- HEADER -->
+                <div class="form-header">
+
+                    <div class="form-icon">
+                        <i class="bi bi-buildings-fill"></i>
                     </div>
 
+                    <h2>
+                        Tambah Fakultas
+                    </h2>
 
-                    {{-- BODY --}}
-                    <div class="card-body p-5 bg-white">
+                    <p>
+                        Form input data fakultas universitas
+                    </p>
 
-                        {{-- ERROR --}}
-                        @if ($errors->any())
+                </div>
 
-                            <div class="alert alert-danger border-0 rounded-4">
-
-                                <ul class="mb-0 ps-3">
-
-                                    @foreach ($errors->all() as $error)
-
-                                        <li>{{ $error }}</li>
-
-                                    @endforeach
-
-                                </ul>
-
-                            </div>
-
-                        @endif
-
-
-                        {{-- FORM --}}
-                        <form action="/fakultas" method="POST">
-
-                            @csrf
-
-
-                            {{-- NAMA FAKULTAS --}}
-                            <div class="mb-4">
-
-                                <label class="form-label fw-semibold text-dark">
-
-                                    Nama Fakultas
-
-                                </label>
-
+                <!-- BODY -->
+                <div class="form-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="/fakultas" method="POST">
+                        @csrf
+                        <!-- NAMA FAKULTAS -->
+                        <div class="mb-4">
+                            <label class="form-label">
+                                Nama Fakultas
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-mortarboard-fill"></i>
+                                </span>
                                 <input
-                                    type="text"
                                     name="nama_fakultas"
-                                    class="form-control custom-input"
-                                    placeholder="Contoh: Fakultas Teknik">
-
+                                    type="text"
+                                    placeholder="Masukkan nama fakultas..."
+                                    class="form-control"
+                                    >
                             </div>
+                        </div>
+                        <!-- NAMA DEKAN -->
+                        <div class="mb-4">
 
+                            <label class="form-label">
+                                Nama Dekan
+                            </label>
 
-                            {{-- NAMA DEKAN --}}
-                            <div class="mb-5">
+                            <div class="input-group">
 
-                                <label class="form-label fw-semibold text-dark">
-
-                                    Nama Dekan
-
-                                </label>
+                                <span class="input-group-text">
+                                    <i class="bi bi-person-badge-fill"></i>
+                                </span>
 
                                 <input
                                     type="text"
                                     name="nama_dekan"
-                                    class="form-control custom-input"
-                                    placeholder="Contoh: Dr. Budi Santoso">
+                                    id="nama_dekan"
+                                    placeholder="Masukkan nama dekan..."
+                                    class="form-control"
+                                    >
 
                             </div>
 
+                        </div>
 
-                            {{-- BUTTON --}}
-                            <div class="d-grid">
+                        <!-- BUTTON -->
+                        <div class="d-grid mt-4">
 
-                                <button
-                                    type="submit"
-                                    class="btn btn-dark rounded-4 py-3 fw-semibold">
+                            <button type="submit" class="btn btn-primary btn-save">
 
-                                    💾 Simpan Data
+                                <i class="bi bi-save2-fill me-2"></i>
+                                Simpan Data Fakultas
 
-                                </button>
-
-                            </div>
-
-                        </form>
-
-                    </div>
-
-
-                    {{-- FOOTER --}}
-                    <div class="card-footer bg-white border-top text-center py-4">
-
-                        <small class="text-muted">
-                            Sistem Informasi Fakultas
-                        </small>
-
-                    </div>
-
+                            </button>
+                    </form>
                 </div>
-
-            </div>
-
+               </div>
         </div>
-
     </div>
-
-
-    {{-- STYLE --}}
-    <style>
-
-        .custom-input{
-            border-radius:16px;
-            border:1px solid #e5e7eb;
-            padding:14px 18px;
-            font-size:15px;
-            transition:.3s;
-            box-shadow:none!important;
-        }
-
-        .custom-input:focus{
-            border-color:#111827;
-            box-shadow:0 0 0 4px rgba(17,24,39,0.08)!important;
-        }
-
-        .btn-dark{
-            background:#111827;
-            border:none;
-            transition:.3s;
-        }
-
-        .btn-dark:hover{
-            background:#000;
-            transform:translateY(-2px);
-        }
-
-        .card{
-            background:#fff;
-        }
-
-    </style>
-
 </x-layout>

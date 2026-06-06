@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -9,63 +8,66 @@
     <title>Sistem Informasi Fakultas</title>
 
     {{-- Bootstrap 5 --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
     {{-- Google Font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <style>
-        body {
+
+        body{
             font-family: 'Poppins', sans-serif;
             background-color: #f8fafc;
             color: #212529;
         }
 
         /* Navbar */
-        .navbar {
+        .navbar{
             background-color: #ffffff;
             border-bottom: 1px solid #e9ecef;
             padding: 14px 0;
         }
 
-        .navbar-brand {
+        .navbar-brand{
             font-weight: 700;
             color: #0d6efd !important;
             font-size: 22px;
         }
 
-        .nav-link {
+        .nav-link{
             color: #495057 !important;
             font-weight: 500;
             transition: .2s;
         }
 
-        .nav-link:hover {
+        .nav-link:hover{
             color: #0d6efd !important;
         }
 
         /* Content */
-        main {
+        main{
             min-height: 100vh;
             padding: 30px 0;
         }
 
-        .content-wrapper {
+        .content-wrapper{
             background: #fff;
             border-radius: 18px;
             padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
         /* Button */
-        .btn {
+        .btn{
             border-radius: 10px;
             font-weight: 500;
         }
 
         /* Footer */
-        footer {
+        footer{
             background-color: #fff;
             border-top: 1px solid #e9ecef;
             padding: 18px 0;
@@ -73,6 +75,7 @@
             color: #6c757d;
             font-size: 14px;
         }
+
     </style>
 
 </head>
@@ -90,7 +93,10 @@
             </a>
 
             {{-- Toggle --}}
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
 
                 <span class="navbar-toggler-icon"></span>
 
@@ -119,21 +125,17 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/prodi/create" class="btn btn-primary px-4">
+                        <a href="/prodi/create"
+                           class="btn btn-primary px-4">
                             + Prodi
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="/fakultas/create" class="btn btn-primary px-4">
+                        <a href="/fakultas/create"
+                           class="btn btn-primary px-4">
                             + Fakultas
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <form action="/logout" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-danger">Logout</button>
-                        </form>
                     </li>
 
                 </ul>
@@ -169,8 +171,8 @@
 
 
     {{-- Bootstrap JS --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
 
 </body>
-
 </html>

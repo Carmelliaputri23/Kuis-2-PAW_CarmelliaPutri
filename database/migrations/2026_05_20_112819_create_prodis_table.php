@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Fakultas;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,10 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fakultas', function (Blueprint $table) {
+        Schema::create('prodis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_fakultas');
-            $table->string('nama_dekan');
+            $table->string('nama_prodi');
+            $table->string('nama_kaprodi');
+            $table->string('alias_prodi');
+            $table->string('photo_kaprodi')->nullable();
+            $table->foreignIdFor(Fakultas::class)->constrained('fakultas');
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fakultas');
+        Schema::dropIfExists('prodis');
     }
 };

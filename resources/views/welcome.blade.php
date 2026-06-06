@@ -1,37 +1,47 @@
 <x-layout>
-    <div class="container mt-4">
 
-        <div class="card shadow-sm text-center">
-            <div class="card-body py-5">
+    <div class="container py-5">
 
-                <h1 class="mb-3">
-                    Welcome
-                </h1>
+        <div class="row justify-content-center">
 
-                <p class="text-muted mb-4">
-                    Sistem Manajemen Data Fakultas
-                </p>
+            <div class="col-md-8">
 
-                <div class="d-flex justify-content-center gap-3">
+                <div class="card border-0 shadow-sm rounded-4">
 
-                    <a 
-                        href="/fakultas"
-                        class="btn btn-primary"
-                    >
-                        List Fakultas
-                    </a>
+                    <div class="card-body text-center p-5">
 
-                    <a 
-                        href="/fakultas/create"
-                        class="btn btn-success"
-                    >
-                        Tambah Fakultas
-                    </a>
+                        <h1 class="fw-bold mb-3">
+                            Sistem Informasi Fakultas
+                        </h1>
+
+                        <p class="text-muted mb-4">
+                            Kelola data fakultas dan program studi
+                            dengan lebih mudah dan sederhana.
+                        </p>
+
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                            <a href="/fakultas"
+                               class="btn btn-primary px-4">
+                                List Fakultas
+                            </a>
+                            
+                            <a href="/prodi"
+                               class="btn btn-primary px-4">
+                                List Prodi
+                            </a>
+
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
+
         </div>
 
     </div>
+
 </x-layout>
